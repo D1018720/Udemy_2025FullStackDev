@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>故宮問卷調查</title>
+</head>
+<body>
+    <form action="">
+        <label for="nameId">姓名：</label>
+        <input id="nameId" type="text" name="name">
+        
+        <!-- email內屬性可以設定required會預設一定要填寫，required不限email使用而已。-->
+        <label for="email">信箱：</label>
+        <input type="email" name="email" id="email">
+
+        <!-- checkbox的value是要設定的，不像text的打上去就有。 -->
+        <!-- checkbox內屬性可以設定checked會預設打勾。-->
+        <input id="newsletter" type="checkbox" checked name="newsletter" value="subscribe">
+        <label for="newsletter">訂閱電子報</label>
+        <button type="submit">提交表單</button>
+
+        <input type="file">
+    </form>
+</body>
+</html>

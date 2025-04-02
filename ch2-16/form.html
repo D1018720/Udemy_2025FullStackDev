@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>故宮問卷調查</title>
+</head>
+<body>
+    <!-- method屬性告訴瀏覽器如何將表單數據發送到服務器。 -->
+    <!-- GET：form data會被附加到action指定的url，並會用？分隔數據，
+     通常用來向伺服器發送非隱密資料，或像伺服器請求資料。 -->
+    <!-- POST：會把資料隱藏起來，通常用來向伺服器寄出隱密資料(密碼)，
+     或用來向伺服器寄送需要被儲存或處理的資料。-->
+    <form action="POST">
+        <label for="email">帳號：</label>
+        <input id="email" type="text" name="email">
+        <label for="password">密碼：</label>
+        <input id="password" type="password" name="password">
+        <button type="submit">登錄系統</button>
+    </form>
+</body>
+</html>
