@@ -1,0 +1,20 @@
+/* background-color */
+/* h1 {
+    background-color: gray;
+} */
+
+/* background-image */
+body {
+    background-image: url("./image/tommy-tsao-TZldfnLPZ3Q-unsplash.jpg");
+    /* background-size: contain;
+    background-repeat: no-repeat; */
+    background-size: cover;
+    background-position: center;
+}
+
+/* background-size */
+/* contain and cover */
+/* contain 會在其容器內盡可能大地等比例縮放圖像，不裁剪或拉伸。
+若容器大於圖像，圖像會重複平鋪，除非 background-repeat 設定為 no-repeat */
+/* cover 會將圖像縮放到盡可能小的尺寸以填充容器，不留空白，
+若圖像比例跟容器不同，則會被水平或垂直剪裁 */
