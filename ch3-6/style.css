@@ -1,0 +1,36 @@
+/* attribute selector */
+input[type="text"] {
+    color: red;
+}
+
+/* pseudo-class 用於指定所選元素的特殊狀態 */
+/* 滑鼠碰到會變色 */
+/* input[type="text"]:hover {
+    color: lightgreen;
+} */
+
+/* 滑鼠按住會變色 */
+/* input[type="text"]:active {
+    color: lightgreen;
+} */
+
+/* 選到當前目標就會變色 */
+/* input[type="text"]:focus {
+    color: lightgreen;
+} */
+
+/* pseudo-element 是添加到選擇器的關鍵字，
+設置所選元素的特定部分樣式，創造一個DOM當中不存在的元素 */
+/* p::before {
+    content: ">>";
+    color: blue;
+} */
+
+p::first-line {
+    font-size: 32px;
+}
+
+/* 選字反白從原始的藍色背景白色字，改成亮綠色背景 */
+*::selection {
+    background: lightgreen;
+}
