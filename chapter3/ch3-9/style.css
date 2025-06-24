@@ -1,0 +1,42 @@
+/* text-align 設置 block element 或 table cell 中的 content 的水平對齊 */
+h1 {
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
+table,
+th, 
+tr,
+td {
+    border: 1px solid black;
+}
+
+td, 
+th {
+    text-align: center;
+}
+
+/* text-decoration */
+a {
+    text-decoration: line-through;
+}
+
+/* line-height 設置文字行距 */
+
+/* letter-spacing 設置文字水平間距 */
+
+/* font-family 為所選元素指定一個或多個字體系列的優先級 */
+body {
+    font-family: "Noto Sans SC", sans-serif;
+}
+
+/* text-indent 設段落的內縮長度 */
+p {
+    /* 內縮兩個字(32px) */
+    text-indent: 2rem; 
+}
+
+/* font-weight 設定文字粗度 */
