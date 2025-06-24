@@ -1,0 +1,24 @@
+/* CSS 單位有 absolute units 跟 relative units */
+/* absolute units 像是 px、in、mm、cm */
+/* relative units 像是 em、rem、vw、vh */
+/* em 相對於 parent element 的長度，再多層DOM Tree 越下層的 element 的 em 值難以計算 */
+/* rem 是 root em 的意思，會找到 <html> 的設定，網頁預設 font size 為 16px */
+/* vw 是目前 viewport(瀏覽器視窗) 寬度的 1/100，100vw 通常會略寬於網頁寬度，所以可能現 horizontal scrollbar */
+h1 {
+    background-color: red;
+    width: 100vw;
+}
+
+/* vh 是目前 viewport 高度的 1/100 */
+/* % 是相對於 parent element 的值 */
+.box {
+    width: 500px;
+    background-color: red;
+    height: 300px;
+}
+
+.inner-box {
+    width: 50%; /* 250px */
+    background-color: black;
+    height: 50%; /* 150px */
+}
