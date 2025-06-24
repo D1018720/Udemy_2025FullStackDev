@@ -1,0 +1,23 @@
+/* element selector */
+/* h2 {
+    color: greenyellow;
+} */
+
+/* id selector */
+/* #first-paragraph {
+    color: rgb(100, 25, 200);
+} */
+
+/* class selector */
+/* .blue-text {
+    color: blue;
+}
+
+.Large-text {
+    font-size: 32px;
+} */
+
+/* element selector and class selector 並用 */
+a.Large-text {
+    font-size: 32px;
+}
