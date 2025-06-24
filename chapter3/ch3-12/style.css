@@ -1,0 +1,38 @@
+/* box model 由外到內包含 margin border padding content */
+
+/* content 顯示內容區域，使用 width 和 height 等屬性調整大小 */
+
+/* padding 位於 content 周圍，在 content 跟 border 之間 */
+
+/* border 包住 content 與 padding 的邊框 */
+
+/* margin 是 border 外的區域 */
+
+/* padding、border、margin 都可以分別再設定上下左右個別屬性 */
+/* border 可特別設定 border-radius */
+h1 {
+    width: 500px;
+    height: 600px;
+    background-color: red;
+    
+    border: 5px solid black; /* 中間那個是 border-style */
+
+    border-radius: 30px;
+    
+    padding: 100px; 
+    /* padding 只設定一個值，就作用於四周 */
+    /* 設定兩個值，就作用於 上下 左右 */
+    /* 設定三個值，就作用於 上 左右 下 */
+    /* 設定四個值，就作用於 上 右 下 左 */
+
+    margin: 0rem 3rem;
+}
+
+.box {
+    width: 500px;
+    height: 500px;
+    background-color: red;
+    border-radius: 50%; /* 畫圓 */
+}
+
+
