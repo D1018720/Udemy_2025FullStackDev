@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* transform屬性允許我們旋轉、縮放、傾斜或平移元素，可設定translate，rotate，scale */
+        div.container {
+            width: 500px;
+            height: 500px;
+            background-color: black;
+        }
+
+        div.box {
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+            transition: all 0.5s;
+        }
+
+        div.box:hover {
+            /* transform: rotate(90deg);  */
+            /* 還有rotateX、rotateY */
+
+            transform: scale(2, 6); 
+            /* scale(X軸，Y軸) */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box"></div>
+    </div>
+</body>
+</html>

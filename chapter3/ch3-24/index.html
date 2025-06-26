@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 動畫可由transform跟transition合併設定來完成，若要更複雜的動畫，就用animation */
+        /* animation: animation name，animation-duration，animation-timing-function，animation-delay，animation-iteration-count，animation-direction，animation-fill-mode，animation-play-state等等 */
+        div.container {
+            width: 500px;
+            height: 500px;
+            background-color: black;
+        }
+
+        div.box {
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+            /* animation: changeColor; */
+            /* animation-duration: 5s; */
+            /* 設定下面那個後，方塊就不會變回原本顏色 */
+            /* animation-fill-mode: forwards; */
+            
+            position: relative;
+            
+            /* 動畫循環次數 */
+            /* animation-iteration-count: infinite; */
+
+            /* 可以用一個animation就宣布所有屬性，不需要拆開單獨宣布 */
+            /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+            animation: changeColor 1s ease-in 0s infinite alternate forwards;
+        }
+
+        @keyframes changeColor {
+            from {
+                background-color: aqua;
+                top: 0;
+                left: 0;
+            }
+            to {
+                background-color: red;
+                top: 400px;
+                left: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box"></div>
+    </div>
+</body>
+</html>
