@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        height: 5000px;
+      }
+
+      /* 這段程式碼中，div.stick_box 設定的 top: 10px 並不會讓 stick_box 向下飄移 10px，而是設定了 sticky 屬性需要在距離上方 10 px 時固定 stick_box 的位置。然而，之所以說 sticky 是 relative 的變體是因為，未超過 threshold 時，這個元素是個 positioned element，與 static 不同。此元素未超過 threshold 時，也不會從 normal flow 當中移除，所以與 absolute, fixed 不同。因此，未超過 threshold 的 sticky 元素是類似於 relative positioned 的元素，但需要注意的是， top, right, bottom, left 是用來設定 sticky 的 threshold ，與 relative positioned 自身進行飄移效果無關。 */
+      div.something {
+        height: 500px;
+        background-color: blue;
+      }
+      div.stick_box {
+        width: 100px;
+        height: 100px;
+        position: sticky;
+        top: 10px;
+        background-color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="something"></div>
+    <div class="stick_box"></div>
+  </body>
+</html>
