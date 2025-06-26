@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 4000px;
+        }
+        /* closest positioned ancestor */
+        div.container {
+            width: 500px;
+            height: 2000px;
+            background-color: black;
+            /* position: relative; */
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+        }
+        
+        .smallbox {
+            width: 100px;
+            height: 100px;
+        }
+
+        .box1 {
+            background-color: aqua;
+        }
+        
+        .box2 {
+            background-color: rgb(71, 184, 109);
+            position: relative;
+            z-index: 0;
+        }
+
+        .box3 {
+            background-color: rgb(197, 94, 63);
+        }
+
+        /* 任何元素有設定position為absolute或relative，且z-index不是auto，則內部形成新的stacking context( 元素沿虛擬Z軸相對於用戶的3D概念化 ) */
+        /* 因為box2設定position: relative; z-index: 0; 所以自行形成新stacking context，這樣box4就不會跑到box2後面，因為box4包含在box2裡面 */
+        .box4 {
+            background-color: orange;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: -1;
+        }
+
+        .box5 {
+            background-color: rgb(197, 56, 197);
+            position: absolute;
+            top: 30px;
+            left: 80px;
+            z-index: -5;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- .box.box$*3快速設定 -->
+        <div class="box box1"></div>
+        <div class="box box2">
+            <div class="smallbox box4"></div>
+            <div class="smallbox box5"></div>
+        </div>
+        <div class="box box3"></div>
+    </div>
+</body>
+</html>
