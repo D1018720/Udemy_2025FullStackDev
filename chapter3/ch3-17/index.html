@@ -30,7 +30,7 @@
         
         .box2 {
             background-color: rgb(71, 184, 109);
-            /* relative:元素根據normal flow定位，根據top、right、bottom、left值相對於自身進行偏移*/
+            /* relative:元素根據normal flow定位，根據top、right、bottom、left值相對於自身進行偏移，沒有從normal flow中移除 */
             /* position: relative;
             top: 100px;
             z-index: 10; */
@@ -45,7 +45,7 @@
             top: 300px;
             left: 100px; */
 
-            /* stick:是relative跟fixed混合體，元素被視為相對定位，直到超過指定的threshold，此時被視為固定定位 */
+            /* stick:是relative跟fixed混合體，元素被視為相對定位，沒有從normal flow中移除，直到超過指定的threshold，此時被視為固定定位 */
             position: sticky; /* 會黏在class container而已 */
             top: 10px;
         }
