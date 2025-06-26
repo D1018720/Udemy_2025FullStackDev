@@ -1,0 +1,24 @@
+/* display有兩種類型，outer display跟inner display */
+/* outer display有三種，block、inline、inline-block，決定不同box之間在網頁的排版位置 */
+/* inline display有flex跟grid，決定box內部元素在網頁排版的位置 */
+/* <h1>、<p>等為block */
+/* <a>、<span>等為inline */
+/* 只有<img>、<button>、<input>、<select>、<textarea>為inline-block */
+
+/* 原本a元素為inline，不獨立佔一行，所以不管設定什麼長寬值都不會改變 */
+/* inline可設定上下margin、padding，但不會推開其他inline元素，左右可設定且會推開*/
+/* div .myClass {
+    background-color: red;
+    padding: 2rem 3rem;
+}     */
+
+/* inline-block不會換行，但可以設定長寬 */
+#image1 {
+    width: 600px;
+    height: 300px;
+}
+
+#image2 {
+    width: 400px;
+    height: 300px;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 4000px;
+        }
+        /* closest positioned ancestor */
+        div.container {
+            width: 500px;
+            height: 2000px;
+            background-color: black;
+            /* position: relative; */
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+        }
+
+        /* static:元素根據文檔的normal flow(瀏覽器的正常排版規則)進行定位。top、right、bottom、left和z-index屬性無效，並非positioned element */
+        /* z-index在stacking context相同，positioned element較大的z-index會覆蓋較小的元素，z-index會套用在positioned element */
+        
+        .box1 {
+            background-color: aqua;
+        }
+        
+        .box2 {
+            background-color: rgb(71, 184, 109);
+            /* relative:元素根據normal flow定位，根據top、right、bottom、left值相對於自身進行偏移*/
+            /* position: relative;
+            top: 100px;
+            z-index: 10; */
+
+            /* absolute:元素從normal flow中移除，不保留任何空間，根據top、right、bottom、left值相對於自身進行定位，定位參考對象是closest positioned ancestor(parent element)，若都找不到，則參考對象為initial containing block(瀏覽器初始視窗) */
+            /* position: absolute;
+            right: 0;
+            top: 0; */
+
+            /* fixed:元素從normal flow中移除，不保留任何空間，根據top、right、bottom、left值相對於自身進行定位，固定在瀏覽視窗的固定位置，不隨滾輪拉動，定位參考對象是initial containing block(瀏覽器初始視窗) */
+            /* position: fixed;
+            top: 300px;
+            left: 100px; */
+
+            /* stick:是relative跟fixed混合體，元素被視為相對定位，直到超過指定的threshold，此時被視為固定定位 */
+            position: sticky; /* 會黏在class container而已 */
+            top: 10px;
+        }
+
+        .box3 {
+            background-color: rgb(197, 94, 63);
+            /* position: relative;
+            bottom: 50px;
+            z-index: 5; */
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- .box.box$*3快速設定 -->
+        <div class="box box1"></div>
+        <div class="box box2"></div>
+        <div class="box box3"></div>
+    </div>
+</body>
+</html>
