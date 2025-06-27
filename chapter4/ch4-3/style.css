@@ -1,0 +1,34 @@
+/* flex-direction: row -> 橫向排列，colume -> 直向排列，row-reverse -> 橫向相反排列，column-reverse -> 直向相反排列 */
+/* flex-wrap: */
+div.container {
+    border: 3px solid black;
+    display: flex;
+    /* 原本box1到5總寬是250*5，若視窗縮小到寬度小於250*5，則就換行 */
+    flex-wrap: wrap;
+}
+
+.box {
+    width: 250px;
+    height: 250px;
+}
+
+.box1 {
+    background-color: coral;
+}
+
+.box2 {
+    background-color: aqua;
+}
+
+.box3 {
+    background-color: rgb(115, 165, 236);
+}
+
+.box4 {
+    background-color: pink;
+}
+
+.box5 {
+    background-color: red;
+}
+

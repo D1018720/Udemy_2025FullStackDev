@@ -1,0 +1,51 @@
+
+
+/* 根據flex-direction方向為主，justify-content也會跟著變化，並非一定都是視窗的水平方向 */
+/* div.container {
+    border: 3px solid black;
+    height: 1500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+} */
+
+/* align-items控制cross axis(與main axis垂直)的排列，有stretch、flex-start、flex-end、center、baseline */
+div.container {
+    border: 3px solid black;
+    height: 1500px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+.box {
+    width: 250px;
+    /* height: 250px; */
+}
+
+
+/* .box {
+    width: 250px;
+    height: 250px;
+} */
+
+.box1 {
+    background-color: coral;
+}
+
+.box2 {
+    background-color: aqua;
+}
+
+.box3 {
+    background-color: rgb(115, 165, 236);
+}
+
+.box4 {
+    background-color: pink;
+}
+
+.box5 {
+    background-color: red;
+}
+
