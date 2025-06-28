@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        body div {
+            flex: 1 1 500px;
+        }
+        body div img {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- 將img圖片放入div然後設定div的flex，在設定圖片寬為100%，這樣一來圖片就不會因為超過設定的flex-basis大小兒顯示太大張 -->
+    <div>
+        <img src="./panda_image/panda.jpeg" alt="">
+    </div>
+    <div>
+        <img src="./panda_image/small_panda.jpeg" alt="">
+    </div>
+    
+</body>
+</html>
