@@ -1,0 +1,51 @@
+/* flex item可設定的屬性:flex-grow，flex-shrink，flex-basis，前三個可用flex一次設定，align-self */
+/* flex-grow將flex container中剩餘空間分配給flex items，每個flex item可被設定的彈性增長因子，範圍是[0,無限) */
+/* 根據flex-direction方向為主，justify-content也會跟著變化，並非一定都是視窗的水平方向 */
+div.container {
+    border: 3px solid black;
+    height: 1500px;
+    display: flex;
+    flex-wrap: wrap;
+    /* align-self允許位flex item覆寫默認對齊方式(align-items指定的對齊方式) */
+    align-items: flex-start;
+}
+
+
+/* 剩餘空間是flex container減去flex items後剩的，這些剩餘的會被分配 */
+/* flex container的空間會先分配給flex-items，有剩餘的才會按照flex-grow分配 */
+/* 設定flex-direction: row;則flex-basis是設定flex-item的width，反之同理 */
+.box {
+    flex-basis: 200px;
+}
+
+.box1 {
+    background-color: coral;
+    /* 分配10份 */
+    /* flex-grow: 10; */
+}
+
+.box2 {
+    background-color: aqua;
+    /* 分配1份 */
+    /* flex-grow: 1; */
+}
+
+.box3 {
+    background-color: rgb(115, 165, 236);
+    /* 分配1份 */
+    /* flex-grow: 1; */
+}
+
+.box4 {
+    background-color: pink;
+    /* 分配1份 */
+    /* flex-grow: 1; */
+}
+
+.box5 {
+    background-color: red;
+    /* 分配1份 */
+    /* flex-grow: 1; */
+    align-self: center;
+}
+
