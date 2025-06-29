@@ -68,6 +68,11 @@ main {
 
 /* 當網頁視窗寬沒有200px+500px=700px時，因為有設定wrap所以會換行 */
 
+/* 為korea.html內的main不做flex */
+main.no-flex {
+    display: block;
+}
+
 main section {
     padding: 1rem;
 }
@@ -111,4 +116,20 @@ section.right ul {
     margin-left: 2rem;
 }
 
+/* korea.html內的player排版 */
+.player {
+    margin: 2rem;
+    border: 3px solid burlywood;
+    padding: 0.5rem;
+}
+
+.player h4 {
+    font-size: 1.5rem;
+    color: rgb(0, 90, 91);
+}
+
+.player h5{
+    font-size: 1.05rem;
+    color: rgb(6, 120, 120);
+}
 
