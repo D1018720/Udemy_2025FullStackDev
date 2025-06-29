@@ -133,3 +133,46 @@ section.right ul {
     color: rgb(6, 120, 120);
 }
 
+/* japan.html CSS設計 */
+div.japan {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+}
+
+div.japan div.image {
+    flex: 1 1 300px;
+    /* 將圖片保持在div.image中間，這樣在視窗變小時，不會跟div.info有不對齊的問題 */
+    display: flex;
+    align-items: center;
+}
+
+/* 將圖片大小控制在div.japan div.image的300px，這樣圖片才不會太大且不會根據視窗而換行 */
+div.japan div.image img {
+    width: 100%;
+}
+
+div.japan div.info {
+    flex: 3 1 600px;
+    padding: 2rem;
+}
+
+div.competition {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+}
+
+div.competition div.text {
+    flex: 5 1 300px;
+    padding: 1rem;
+}
+
+div.competition div.text h3 {
+    font-size: 2rem;
+    color: rgb(12, 122, 92);
+}
+
+#piechart {
+    flex: 1 1 300px;
+}
