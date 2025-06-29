@@ -1,0 +1,62 @@
+* {
+    /* 將html元素原本的格式都拿掉 */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* DFKai-sb是標楷體 */
+    font-family: DFKai-sb, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+}
+
+header div.top {
+    padding: 1rem;
+    background-image: url("./images/background.png");
+}
+
+header div.top h1 {
+    font-size: 2.5rem;
+}
+
+header div.top h3 {
+    font-size: 1rem;
+}
+
+header nav {
+    background-color: black;
+}
+
+/* 要記得設定flex在ul上，因為我們是要讓li內的資訊變橫向的樣子，當作是flex item */
+header nav ul {
+    display: flex;
+    /* 將li初始黑色圓點拿掉 */
+    list-style-type: none;
+}
+
+header nav ul li {
+    padding: 0.8rem 1.2rem;
+}
+
+header nav ul li a {
+    color: white;
+    /* a tag內初始底線拿掉 */
+    text-decoration: none;
+    font-size: 1.25rem;
+    /* 設定hover顏色更改動畫時間 */
+    transition: all 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: yellow;
+}
+
+.active {
+    color: yellow;
+}
