@@ -54,7 +54,7 @@ header nav ul li a:hover {
 
 main section.background-img {
   min-height: 70vh;
-  background-image: url("../images/日本櫻花.jpg");
+  background-image: url("./images/日本櫻花.jpg");
   background-size: cover;
   background-position: center;
   transition: all 0.75s ease;
