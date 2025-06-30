@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D日本旅遊推薦</title>
+    <title>日本旅遊推薦</title>
     <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
@@ -21,6 +21,30 @@
             </ul>
         </nav>
     </header>
+
+    <main>
+        <section class="background-img">
+            <div class="filter"></div>
+            <h3>休閒空間，特殊假期。<br />安排一趟日本旅遊行程，放鬆身心。</h3>
+        </section>
+    </main>
     <script src="https://kit.fontawesome.com/6ca4835bdc.js" crossorigin="anonymous"></script>
+    
+    <script>
+      setInterval(() => {
+        let topBackground = document.querySelector("section.background-img");
+        if (
+          topBackground.style.backgroundImage == 'url("../images/日本櫻花.jpg")'
+        ) {
+          topBackground.style.backgroundImage = 'url("../images/京都古城.jpg")';
+        } else if (
+          topBackground.style.backgroundImage == 'url("../images/京都古城.jpg")'
+        ) {
+          topBackground.style.backgroundImage = 'url("../images/大阪街頭.jpg")';
+        } else {
+          topBackground.style.backgroundImage = 'url("../images/日本櫻花.jpg")';
+        }
+      }, 3000);
+    </script>
 </body>
 </html>
