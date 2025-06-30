@@ -1,0 +1,47 @@
+// 變數設定，可以方便一起改變
+$themeColor: orange;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// mixin類似於function、method
+@mixin flexbox($direction) {
+    display: flex;
+    flex-direction: $direction;
+}
+
+// Nested CSS (巢狀語法)
+header {
+    nav {
+        ul {
+            @include flexbox(column);
+            // display: flex;
+            flex-wrap: wrap;
+            li {
+                list-style-type: none;
+                a {
+                    color: $themeColor;
+                    text-decoration: none;
+                    // &是self ampersand，也就是自己
+                    &:hover {
+                        color: green;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// import物件，檔名前都要加底線
+// @import "./header";
+
+h1 {
+    color: $themeColor
+}
+
+h2 {
+    color: $themeColor
+}
