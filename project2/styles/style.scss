@@ -33,6 +33,13 @@ body {
         flex-wrap: wrap;
         align-items: center;
 
+        // sticky header
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        // 加入陰影來凸顯sticky header不跟背景重疊
+        box-shadow: 0 10px 6px -6px #777;
+
         section.Logo {
             flex: 2 1 400px;
             // border: 2px solid green;
