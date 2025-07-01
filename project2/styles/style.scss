@@ -178,6 +178,34 @@ body {
             }
         }
     }
+
+    footer {
+        display: flex;
+        padding: 2rem;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.3);
+
+        section.logo {
+            img {
+                width: 30vw;
+            }
+            h3 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        section.links {
+            margin-top: 2rem;
+            a {
+                img {
+                    width: 5vh;
+                    margin: 0rem 1rem;
+                }
+            }
+        }
+    }
 }
 
 // 視窗寬小於700px時，導覽列變直排，且Logo不會隨著視窗縮小，圖片就一直變小
