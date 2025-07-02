@@ -77,16 +77,38 @@ body {
                 }
             }
         }
+
+        section.about-me {
+            background-color: rgb(231, 255, 233);
+            padding: 5rem 0rem;
+            display: flex;
+			justify-content: center;
+
+            section.description {
+                width: 50%;
+				text-align: center;
+				h2 {
+					font-size: 2rem;
+				}
+				.progress-bar-area {
+					p {
+						margin-top: 1rem;
+					}
+				}
+            }
+        }
     }
 
     main.contact-info {
-        margin: 1rem;
         display: flex;
         flex-wrap: wrap;
 
         div {
             margin: 1rem;
-            font: 2rem;
+            font-size: 2rem;
+            i {
+                color: rgb(54, 212, 138);
+            }
         }
     }
 }
