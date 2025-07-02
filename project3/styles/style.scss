@@ -14,8 +14,15 @@ h6 {
 } 
 
 body {
+    // 不會因為greenRect等框框而有水平移動的滾輪
+    overflow-x: hidden;
     nav {
         background-color: white;
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        
+
         ul {
             display: flex;
             li {
@@ -104,7 +111,7 @@ body {
 			padding: 2rem;
 
 			section.table {
-				flex: 5 1 500px;
+				flex: 5 0 500px;
 				// border: 2px solid black;
 				padding: 2rem;
 				table {
@@ -182,5 +189,41 @@ body {
 
 .active {
     color: rgb(54, 212, 138);
+}
+
+@media screen and (max-width: 800px) {
+    body {
+        main {
+            section.about-me {
+                section.description {
+                    width: 80%;
+                }
+            }
+
+            section.resume {
+                // 在table縮到很小的時候，不要縮太小，可以保留一定大小然後又水平移動滾輪
+                overflow-x: auto;
+                section.picture {
+                    div.greenRect,
+                    div.greenRect2,
+                    div.greenRect3 {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+@media screen and (max-width: 500px) {
+    body {
+        nav {
+            position: static;
+            ul {
+                flex-direction: column;
+            }
+        }
+    }    
 }
 

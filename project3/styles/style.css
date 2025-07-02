@@ -13,8 +13,14 @@ h6 {
   font-weight: normal;
 }
 
+body {
+  overflow-x: hidden;
+}
 body nav {
   background-color: white;
+  position: sticky;
+  top: 0;
+  z-index: 5;
 }
 body nav ul {
   display: flex;
@@ -91,7 +97,7 @@ body main section.resume {
   padding: 2rem;
 }
 body main section.resume section.table {
-  flex: 5 1 500px;
+  flex: 5 0 500px;
   padding: 2rem;
 }
 body main section.resume section.table table {
@@ -159,4 +165,26 @@ body main.contact-info div i {
 
 .active {
   color: rgb(54, 212, 138);
+}
+
+@media screen and (max-width: 800px) {
+  body main section.about-me section.description {
+    width: 80%;
+  }
+  body main section.resume {
+    overflow-x: auto;
+  }
+  body main section.resume section.picture div.greenRect,
+  body main section.resume section.picture div.greenRect2,
+  body main section.resume section.picture div.greenRect3 {
+    display: none;
+  }
+}
+@media screen and (max-width: 500px) {
+  body nav {
+    position: static;
+  }
+  body nav ul {
+    flex-direction: column;
+  }
 }/*# sourceMappingURL=style.css.map */
