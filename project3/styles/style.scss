@@ -78,4 +78,20 @@ body {
             }
         }
     }
+
+    main.contact-info {
+        margin: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+
+        div {
+            margin: 1rem;
+            font: 2rem;
+        }
+    }
 }
+
+.active {
+    color: rgb(54, 212, 138);
+}
+

@@ -68,4 +68,17 @@ body main section.main-area div.img-area {
 }
 body main section.main-area div.img-area img {
   width: 100%;
+}
+body main.contact-info {
+  margin: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+body main.contact-info div {
+  margin: 1rem;
+  font: 2rem;
+}
+
+.active {
+  color: rgb(54, 212, 138);
 }/*# sourceMappingURL=style.css.map */
