@@ -69,14 +69,32 @@ body main section.main-area div.img-area {
 body main section.main-area div.img-area img {
   width: 100%;
 }
+body main section.about-me {
+  background-color: rgb(231, 255, 233);
+  padding: 5rem 0rem;
+  display: flex;
+  justify-content: center;
+}
+body main section.about-me section.description {
+  width: 50%;
+  text-align: center;
+}
+body main section.about-me section.description h2 {
+  font-size: 2rem;
+}
+body main section.about-me section.description .progress-bar-area p {
+  margin-top: 1rem;
+}
 body main.contact-info {
-  margin: 1rem;
   display: flex;
   flex-wrap: wrap;
 }
 body main.contact-info div {
   margin: 1rem;
-  font: 2rem;
+  font-size: 2rem;
+}
+body main.contact-info div i {
+  color: rgb(54, 212, 138);
 }
 
 .active {
