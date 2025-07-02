@@ -85,6 +85,66 @@ body main section.about-me section.description h2 {
 body main section.about-me section.description .progress-bar-area p {
   margin-top: 1rem;
 }
+body main section.resume {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2rem;
+}
+body main section.resume section.table {
+  flex: 5 1 500px;
+  padding: 2rem;
+}
+body main section.resume section.table table {
+  --bs-table-bg: none;
+  border-collapse: collapse;
+}
+body main section.resume section.table table tr {
+  border-bottom: 2px solid gray;
+  transition: all 0.2s ease;
+}
+body main section.resume section.table table tr:hover {
+  background-color: rgb(184, 255, 222);
+}
+body main section.resume section.table table tr td {
+  padding: 1rem;
+}
+body main section.resume section.picture {
+  flex: 1 1 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+body main section.resume section.picture img {
+  width: 80%;
+}
+body main section.resume section.picture div.greenRect {
+  width: 30vw;
+  height: 90vh;
+  border: 10px solid rgb(195, 255, 200);
+  position: absolute;
+  top: 30px;
+  left: 80px;
+  z-index: -1;
+}
+body main section.resume section.picture div.greenRect2 {
+  width: 50vw;
+  height: 40vh;
+  border: 10px solid rgb(195, 255, 200);
+  position: absolute;
+  top: 300px;
+  left: -300px;
+  z-index: -1;
+}
+body main section.resume section.picture div.greenRect3 {
+  width: 50vw;
+  height: 40vh;
+  border: 10px solid rgb(195, 255, 200);
+  position: absolute;
+  top: 0px;
+  left: -100px;
+  z-index: -1;
+}
 body main.contact-info {
   display: flex;
   flex-wrap: wrap;
