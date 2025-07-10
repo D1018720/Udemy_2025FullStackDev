@@ -46,6 +46,15 @@ allSelects.forEach((select) => {
     });
 });
 
+
+// 改變credit之後，GPA也要更新
+let credits = document.querySelectorAll('.class-credit');
+credits.forEach((credit) => {
+    credit.addEventListener('change', () => {
+        setGPA();
+    });
+});
+
 function changeColor(target) {
     if (target.value === "A" || target.value === "A-") {
         target.style.backgroundColor = "lightgreen";
@@ -72,5 +81,61 @@ function changeColor(target) {
     }
 }
 
+function convertor(grade) {
+    switch (grade) {
+        case "A":
+            return 4.0;
+        case "A-":
+            return 3.7;
+        case "B+":
+            return 3.4;
+        case "B":
+            return 3.0;
+        case "B-":
+            return 2.7;
+        case "C+":
+            return 2.4;
+        case "C":
+            return 2.0;
+        case "C-":
+            return 1.7;
+        case "D+":
+            return 1.4;
+        case "D":
+            return 1.0;
+        case "D-":
+            return 0.7;
+        case "F":
+            return 0.0;
+        default:
+            return 0;
+    }
+}
+
 function setGPA() {
+    let formLength = document.querySelectorAll('form').length;
+    let credits =  document.querySelectorAll('.class-credit');
+    let selects = document.querySelectorAll('select');
+    let sum = 0; // GPA計算用分子
+    let creditSum = 0; // GPA計算用分母
+
+    for (let i = 0; i < credits.length; i++) {
+        if (!isNaN(credits[i].valueAsNumber)) {
+            creditSum += credits[i].valueAsNumber;
+        }
+    }
+
+    for (let i = 0; i < formLength; i++) {
+        if (!isNaN(credits[i].valueAsNumber)) {
+            sum += credits[i].valueAsNumber * convertor(selects[i].value);
+        }
+    }
+
+    let result;
+    if (creditSum == 0) {
+        result = (0.0).toFixed(2); // 如果總學分為0，則GPA為0.00
+    } else {
+        result = (sum / creditSum).toFixed(2); // 保留兩位小數
+    }
+    document.getElementById('result-gpa').innerText = result;
 }    
