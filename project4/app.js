@@ -247,6 +247,15 @@ addButton.addEventListener('click', () => {
     newItag.classList.add('fa-trash');
     newButton.appendChild(newItag);
 
+    newButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.target.parentElement.parentElement.style.animation = 'scaleDown 0.5s ease forwards';
+        e.target.parentElement.parentElement.addEventListener('animationend', (e) => {
+            e.target.remove(); 
+            setGPA(); // 更新GPA
+        });
+    });
+
     newDiv.appendChild(netInput1);
     newDiv.appendChild(netInput2);
     newDiv.appendChild(netInput3);
@@ -257,3 +266,17 @@ addButton.addEventListener('click', () => {
     document.querySelector('.all-inputs').appendChild(newForm);
     newForm.style.animation = 'scaleUp 0.5s ease forwards';
 });    
+
+let allTrash = document.querySelectorAll('.trash-button');
+allTrash.forEach((trash) => {
+    trash.addEventListener('click', (e) => {
+        e.target.parentElement.parentElement.classList.add('remove');
+    });
+});
+allTrash.forEach((trash) => {
+    let form = trash.parentElement.parentElement;
+    form.addEventListener('transitionend', (e) => {
+        e.target.remove(); // 移除整個form元素
+        setGPA(); // 更新GPA
+    });
+});
