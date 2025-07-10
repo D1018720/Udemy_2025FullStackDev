@@ -322,7 +322,76 @@ function handleSorting(direction) {
     if (direction == 'descending') {
         objectArray.reverse(); // 如果是降冪排序，則反轉陣列
     }
-    console.log(objectArray);
+    // 根據object array的內容，來更新網頁
+    let allInputs = document.querySelector('.all-inputs');
+    allInputs.innerHTML = ''; // 清空原有的內容
+
+    for (let i = 0; i < objectArray.length; i++) {
+        allInputs.innerHTML += `<form>
+            <!-- 在input之間加入註解是為了排版，避免產生多餘的空白 -->
+            <div class="grader">
+                <!-- 用datalist在class的分類裡讓使用者在輸入內容時，可以透過下拉選單，選擇於先設定好的內容。 -->
+                <input type="text" placeholder="class category" class="class-type" list="opt" value=${objectArray[i].class_name}><!--  
+                --><input type="text" placeholder="class number" class="class-number"  value=${objectArray[i].class_number}><!--  
+                --><input type="number" placeholder="credits" class="class-credit" min="0" max="6"  value=${objectArray[i].class_credit}><!--  
+                --><select name="select" class="select">
+                    <option value=""></option>
+                    <option value="A">A</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B">B</option>
+                    <option value="B-">B-</option>
+                    <option value="C+">C+</option>
+                    <option value="C">C</option>
+                    <option value="C-">C-</option>
+                    <option value="D+">D+</option>
+                    <option value="D">D</option>
+                    <option value="D-">D-</option>
+                    <option value="F">F</option>
+                </select><!-- 
+                --><button class="trash-button">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </form>`;
+    }
+    // 因為select無法用上面的value直接更改，所以用JS直接改
+    graders = document.querySelectorAll('div.grader');
+    for (let i = 0; i < graders.length; i++) {
+        graders[i].children[3].value = objectArray[i].class_grade; 
+    }
+
+    // 因為上面用.innerHTML方式去改裡面的內容，所以不會有事件監聽器
+    // select事件監聽
+    allSelects = document.querySelectorAll('select');
+    allSelects.forEach((select) => {
+        changeColor(select); // 初始化顏色
+        select.addEventListener('change', (e) => {
+            setGPA();
+            changeColor(e.target); // e.target 是被選擇的select元素
+        });
+    });
+
+    // credit事件監聽
+    let allCredits = document.querySelectorAll('.class-credit');
+    allCredits.forEach((credit) => {
+        credit.addEventListener('change', () => {
+            setGPA();
+        });
+    });
+
+    // 垃圾桶
+    let allTrashButtons = document.querySelectorAll('.trash-button');
+    allTrashButtons.forEach((trash) => {
+        trash.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.target.parentElement.parentElement.style.animation = 'scaleDown 0.5s ease forwards';
+            e.target.parentElement.parentElement.addEventListener('animationend', (e) => {
+                e.target.remove(); 
+                setGPA(); // 更新GPA
+            });
+        });
+    });
 }
 
 function merge(a1, a2) {
