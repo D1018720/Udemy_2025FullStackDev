@@ -11,6 +11,7 @@ let ground_x = 100;
 let ground_y = 500;
 let ground_height = 5;
 let brickArray = [];
+let count = 0; // 計數器，用來計算打到的磚塊數量
 
 function getRandomArbitrary(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -23,11 +24,19 @@ class Brick {
         this.width = 50;
         this.height = 50;
         brickArray.push(this);
+        this.visible = true; // 磚塊是否可見
     }
 
     drawBrick() {   
         ctx.fillStyle = "lightgreen";
         ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+
+    touchingBall(ballX, ballY) {
+        return (ballX >= this.x - radius && 
+            ballX <= this.x + this.width + radius && 
+            ballY >= this.y - radius && 
+            ballY <= this.y + this.height + radius);
     }
 }
 
@@ -64,6 +73,39 @@ c.addEventListener("mousemove", (e) => {
 });
 
 function drawCircle() {
+    // 確認球是否有打到磚塊
+    brickArray.forEach((brick) => {
+        if (brick.visible && brick.touchingBall(circle_x, circle_y)) {
+            count++;
+            brick.visible = false; // 磚塊被打到後設為不可見
+            // 從下方撞擊
+            if (circle_y >= brick.y + brick.height) {
+                ySpeed *= -1; 
+            } 
+            // 從上方撞擊
+            else if (circle_y <= brick.y) {
+                ySpeed *= -1; 
+            }
+            // 從左側撞擊
+            else if (circle_x <= brick.x) {
+                xSpeed *= -1; 
+            }
+            // 從右側撞擊
+            else if (circle_x >= brick.x + brick.width) {
+                xSpeed *= -1; 
+            }
+            // brickArray.splice(index, 1); // 刪除被打到的磚塊 O(n)
+            // if (brickArray.length === 0) {
+            //     alert("Game over!");
+            //     clearInterval(game);
+            // }
+            if (count == 10) {
+                alert("You win!");
+                clearInterval(game);
+            }    
+        }   
+    });
+
     // 確認球是否打到橘色地板
     if (circle_x >= ground_x - radius && 
         circle_x <= ground_x + 200 + radius && 
@@ -105,7 +147,9 @@ function drawCircle() {
 
     // 畫出磚塊
     brickArray.forEach((brick) => {
-        brick.drawBrick();
+        if (brick.visible) { // 只畫出可見的磚塊
+            brick.drawBrick();
+        }
     });
 
     // 畫出可控制的地板
