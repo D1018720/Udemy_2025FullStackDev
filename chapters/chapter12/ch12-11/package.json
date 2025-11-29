@@ -1,0 +1,14 @@
+{
+  "name": "ch12-11",
+  "version": "1.0.0",
+  "description": "This is a simple node practice folder",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cowsay": "^1.5.0"
+  }
+}
