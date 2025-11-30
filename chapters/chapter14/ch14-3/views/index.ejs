@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <form action="/example" method="get">
+        <label for="name">名稱: </label>
+        <input type="text" id="name" name="name">
+        <label for="age">年齡: </label>
+        <input type="number" id="age" name="age">
+        <button>交出表單</button>
+    </form>
+    <br>
+    <table>
+        <tr>
+            <th>名稱</th>
+            <th>評分</th>
+            <th>流行度</th>
+            <th>趨勢</th>
+        </tr>
+        <% languages.forEach(language => { %>
+            <tr>
+                <td><%= language.name %></td>
+                <td><%= language.rating %></td>
+                <td><%= language.popularity %></td>
+                <td><%= language.trending %></td>
+            </tr>
+        <% }) %>
+    </table>
+</body>
+</html>

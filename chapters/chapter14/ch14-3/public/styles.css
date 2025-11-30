@@ -1,0 +1,17 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+table,
+tr,
+th,
+td {
+    border: 1px solid white;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+th, td {
+    padding: 0.25rem 0.5rem;
+}
