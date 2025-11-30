@@ -1,0 +1,6 @@
+<% 一般標籤，用於control flow不輸出任何值。
+<%= 將值輸出到模板中(不轉換HTML語法)。x="<p>"This is a paragraph</p>"，則<%=x%>會輸出<p>This is a paragraph</p>
+<%- 將轉換過的HTML語法的值輸出到模板中。x="<p>"This is a paragraph</p>"，則<%-x%>會輸出This is a paragraph
+<$# 註釋標籤。
+%> 普通結束標籤。
+<%- include %> 語法可以鑲嵌其他EJS文件。
