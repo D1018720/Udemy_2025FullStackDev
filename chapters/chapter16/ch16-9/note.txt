@@ -1,0 +1,16 @@
+電腦科學中，進程(process)是正在執行的程式，執行緒(thread)是
+可由程序調度員(scheduler)獨立管理的輕量級進程。
+
+一個process內可有多個threads。
+
+由於絕大多數時間，電腦許多CPU都是閒置(因為threads可能會需要等待I/O，
+或可能發生CPU正在忙碌，其他CPU卻很閒)，因此我們可以寫出內部有多個threads的程式，
+讓threads被多個CPU並進執行，提高效率，這就是multi-threaded programming。
+
+當兩個以上的thread訪問一個共享資源(shared resource)時，就會發生race condition，可能會遇到bug。
+要避免race condition，可劃分critical region。城市當中，訪問shared resource，被稱為critical region。
+當我們要進去critical region前，可先把shared resource上鎖，任何其他的thread都無法訪問這個shared resource。
+離開critical region後，再去解鎖。
+
+.Lock也稱mutex(mutual exclusion lock)。進去critical region前，mutex會檢查我們是否可以進入。
+mutex另一個名字是binary semaphore。

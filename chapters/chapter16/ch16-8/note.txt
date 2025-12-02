@@ -1,0 +1,30 @@
+在Node.js中，將任何需要等待結果的、請求外部資源才能進行的函式，都會被放到Event Loop中等待。
+
+Queue:
+優先級別:nextTick queue以及microTask queue。
+普通級別:macroTask queue(task queue)，其包含timer，pending callbacks，Idle，
+        prepare，polling，check，and close callbacks。
+
+nextTick queue:優先程度最高的queue，給定的process.nextTick(callback Fn)的
+               callbackFn都會被放入這個queue內。
+microTask queue:優先程度第二的queue，當promise object的狀態由pending
+                轉為fulfilled或rejected時，.then(callback Fn)或
+                .catch(callback Fn)所執行的callback Fn會排在這個queue。
+
+macroTask queue:
+    timer:當setTimeout(callback Fn)跟setInterval(callback Fn)
+          所設定的時間倒數完時，callback Fn會放來這等待執行。
+    pending callbacks:給作業系統做使用得queue，如socket連線時的錯誤，或傳輸控制協定層出現錯誤，
+                      相關的callback Fn會被放到這來。
+    Idle,prepare:給Node.js內部做使用的queue，可略過。
+    polling:當I/O有callback Fn時使用的queue，如.on('data', callback Fn)當中的callback Fn就會被放入這。
+    check:給setImmediate()的callback Fn使用的queue。
+    close callbacks:當socket或檔案被關閉或突然中斷連線時，使用關閉動作callback會放在這。
+
+Node.js運行程式碼順序是:
+*將整份程式碼先掃描一次，若遇到同步函式，就馬上執行。
+*若遇到異步函式，將callback Fn分配到各自歸屬的queue，如setImmediate()的callback Fn放到Check。
+*當整份程式碼完成掃描後，Node.js會重複event loop，只要queue還有setImmediate()的callback尚未被觸發，就會一直循環下去。
+*循環至某個queue時，發現callback可被執行，就把queue內的callback依照先進先出做處理。
+*若在循環過程有nextTick queue可執行，則優先將nextTick queue清空。
+*microTask queue也是跟上一點一樣同理操作。
