@@ -1,0 +1,11 @@
+當我們的操作由多個異步函數組成時，我們需要用到promise chaining，
+讓我們在開始下個函數之前完成前一個函數，這樣每個Promise都互相依賴。
+
+有時我們需要所有Promise都被fulfilled，但他們並不互相依賴，
+這種時後將他們全部一起啟動，然後在他們全部fulfilled時收到通知更有效。
+JS提供Promise.all()這個static method，他接受一個promise array並返回一個promise。
+
+Promise.all()返回的promise若是rejected，代表promise array當中可能有promises變成rejected。
+
+有時我們需要履行一組Promise中任一個，不關心哪一個，那我們就需要用Promise.any()。
+只要Promise array中任一個變成fulfilled，就執行.then()，或如果有所有promises都被拒絕，則執行.catch()。

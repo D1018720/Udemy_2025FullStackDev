@@ -1,0 +1,14 @@
+一個Promise物件有處於三種狀態:
+1. 擱置(pending):初始狀態，並不是fulfilled與rejected
+2. 實現(fulfilled):表示操作成功地完成
+3. 拒絕(rejected):表示操作失敗了
+
+Promise在pending後幾秒內，狀態可能變成fulfilled或rejected，任一狀態轉換發生時，透過then所繫結的callback會被調用
+EX: let promiseObj = fetch(URL);
+    promiseObj.then((data) => {
+        console.log(data);
+    })
+    
+    當promiseObj從pending變成fulfilled後，.then()內的callback func就會被JS自動執行
+
+fetch() 本身的功能是寄送 HTTP request。其中，fetch 會 return 一個 promise 物件。這個 promise 物件在 HTTP response 被接收到時會從 pending 轉變成 fulfilled。另外，如果對 fetch() 所 return 的 promise 物件做 .then(callback) 時，JavaScript 自動帶入 callback 的參數會是一個「Response Object」。
