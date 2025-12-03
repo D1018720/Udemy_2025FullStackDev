@@ -1,0 +1,20 @@
+在我們的codespace裡沒有裝mongosh，它屬於資料庫管理員常用，
+mongoose屬於開發app等常用。
+
+mongodb shell常用指令:
+    show dbs - 展示所有資料庫。
+    db - 展示目前所在的資料庫。
+    use<db> - 將當前所在的資料庫切換到<db>。若其不存在，則製作出病切換到<db>。
+    show collections - 打印當前所在資料庫的所有collections。
+
+在mongodb當中，document指的是數據的基本單元或基本構建塊。
+db.collection.insertOne(<document>) - 參數為一個物件，在collection當中新增一個document。
+db.collection.insertMany([<document 1>, <document 2>, ...]) - 參數為一個由物件組成的array，在collection當中新增一個或一個以上的document。
+db.collection.insert(<document or array of documents>) - 參數為一個物件或一個由物件組成的array，在collection當中新增一個或一個以上的document。
+db.collection.find(<query>) - 找尋collection中的資料。Query的data type是object，用來過濾找尋的資料。
+                              若想獲得collection中的所有資料，find()內可以不給任何argumemt。
+db.collection.updateOne(<filter>,<update>) - 更新collection中第一筆找到的資料。Filter的data type是object，是指更新的選擇標準。
+                                             Update的data type是object，可將被修改資料的新數據放在這個位置。
+db.collection.updateMany(<filter>,<update>) - 功能也是更新collection中的資料，但可一次性更新collection中所有符合filter的多筆資料。
+db.collection.deleteOne(<filter>) - 刪除collection內第一筆符合filter的資料。
+db.collection.deleteMany(<filter>) - 刪除collection內所有符合filter的資料。
