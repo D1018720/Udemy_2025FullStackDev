@@ -1,0 +1,5 @@
+若想製作一個API，而API中的function會return promise object，使得調用這些func時，
+可以用.then(),.catch()，那我們就必須用Promise class的constructor。
+
+promise constructor接受一個函數為參數，也稱為executor。
+executor本身有兩參數，resolve和reject。異步成功就調用前者，反之同理。
