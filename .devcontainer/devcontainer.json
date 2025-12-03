@@ -1,5 +1,5 @@
 {
-  "name": "Node.js + MySQL",
+  "name": "Node.js + MySQL + MongoDB",
   "dockerComposeFile": "docker-compose.yml",
   "service": "backend",
   "workspaceFolder": "/workspace",
@@ -8,11 +8,12 @@
     "ghcr.io/dotnet/aspire-devcontainer-feature/dotnetaspire:1": {}
   },
 
-  "forwardPorts": [3000, 3306],
+  "forwardPorts": [3000, 3306, 27017],
 
   "portsAttributes": {
     "3000": { "label": "Node Server" },
-    "3306": { "label": "MySQL" }
+    "3306": { "label": "MySQL" },
+    "27017": { "label": "MongoDB" }
   },
 
   "postCreateCommand": "npm install"

@@ -10,17 +10,19 @@ services:
       - "3000:3000"
     depends_on:
       - mysql
+      - mongo
 
-  mysql:
-    image: mysql:8
+  mongo:
+    image: mongo:7
     restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: app
     ports:
-      - "3306:3306"
+      - "27017:27017"
     volumes:
-      - mysql-data:/var/lib/mysql
+      - mongo-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
 
 volumes:
   mysql-data:
+  mongo-data:
