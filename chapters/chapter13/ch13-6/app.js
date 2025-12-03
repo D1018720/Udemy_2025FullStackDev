@@ -12,8 +12,8 @@ app.use((req, res, next) => {
   console.log("正在經過第二個middleware...")
   next() // 呼叫 next() 以繼續處理後續的中介軟體或路由處理程序
 })
-//app.use(express.json()) // 解析 application/json 格式的請求主體
-//app.use(express.urlencoded({ extended: true })) // 解析 application/x-www-form-urlencoded 格式的請求主體，extended: true 允許解析String以外的資料類型
+app.use(express.json()) // 解析 application/json 格式的請求主體
+app.use(express.urlencoded({ extended: true })) // 解析 application/x-www-form-urlencoded 格式的請求主體，extended: true 允許解析String以外的資料類型
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
