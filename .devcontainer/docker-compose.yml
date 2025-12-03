@@ -12,6 +12,17 @@ services:
       - mysql
       - mongo
 
+  mysql:
+    image: mysql:8
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: app
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
   mongo:
     image: mongo:7
     restart: unless-stopped
