@@ -1,3 +1,4 @@
+* ch 18-5 Model and Schema:
 Schema - 每個Schema映射到一個MongoDB中的Collection，並定義該Collection中document的架構，
          包含默認值、最大長度、最大值、最小值等等。
 
@@ -15,5 +16,48 @@ const blogSchema = new Schema({
     meta:{votes:Number,favs:Numver},
 })
 
+* ch 18-6 Mongoose資料查詢:
 Model.find(filter) - 找到所有符合filter條件的物件。參數一個物件，用來提供過濾尋找的條件。
 Model.findOne(filter) - 找到第一個符合filter條件的物件。參數一個物件，用來提供過濾尋找的條件。
+
+
+* ch 18-8 更新資料:
+Model.updateOne(filter,update,options) - 找到第一個符合filter條件的物件，將資料更新update的值，filter跟update都是object。
+                                         Options物件可設定runValidators為true，若update值不符合schema設定，就會報錯。
+                                         例如在schema裡設定age: {type: Number, min:[0, '年齡不能小於0']}，而在update時update填入小於0，
+                                         則就會報錯。
+Model.updateMany(filter,update,options)
+Model.findOneAndUpdate(condition,update,options) - 找到第一個符合condition條件的物件，將資料更新update的值。
+                                                  .then()內的callback被執行時，若options內有new屬性為true，
+                                                  則.then()內的callback被執行時，帶入的參數會是更新完成了document，
+                                                  反之若未設定new或設定new為false時，帶入的參數會是更新前的document。
+                                                  Options物件可設定runValidators。
+
+updateOne()是在當我們不需要更新後的document時，並且希望節省一點資料庫操作時間和通訊流量，可以用的選擇。
+其他情況下，findOneAndUpdate()提供更新完成的document是非常實用的功能。
+updateOne()要用.find()才能顯示資料庫的數據，
+
+
+* ch 18-9 刪除資料:
+Model.deleteOne(conditions)、Model.deleteMany(conditions) - 這兩個method都會return一個有deletedCount屬性的object。
+
+* ch 18-10 Schema Validators:
+Schema Validators:
+若希望collections的資料在被放到collections之前，可以經過驗證，例如年齡不能小於0，
+則可以在Schema中設定每個屬性的validators。
+
+通常Schema屬性的設定語法是 name:String，但也可寫成是 name:{type:String, Validators}。
+
+因為每種data type所通用的validators不同，所以我們要將每種validators歸類到各自的data type上。
+對所有的data type都適用的validators有:
+1. required - 可放入一個布林值，或一個array(包含一個值跟客制化的錯誤訊息)，或一個function。
+2. default - 可設定屬性的預設值。
+
+跟String有關的validators:
+1. uppercase(boolean)
+2. lowercase(boolean)
+3. enum(array of strings) - 例如 enum: ["a","b","c"]，如果填了除了這三個以外的就會報錯。
+4. minlength(number)
+5. maxlength(number)
+
+跟number有關的validators: min, max, enum
