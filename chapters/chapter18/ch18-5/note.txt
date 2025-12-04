@@ -1,0 +1,16 @@
+Schema - 每個Schema映射到一個MongoDB中的Collection，並定義該Collection中document的架構，
+         包含默認值、最大長度、最大值、最小值等等。
+
+Model - 包裝Schema的容器。在數據庫中，Schema所對應到的Collection提供了一個接口，可以用Model來對Collection進行
+        新增、查詢、更新、刪除記錄等功能。
+
+Model就像是SQL中的table，而Schema是create table的步驟。
+
+Schema語法:
+import mongoose from 'mongoose';
+const {Schema} = mongoose;
+const blogSchema = new Schema({
+    title:String{type:String},
+    date:{type:Date,defaultl:Date.now},
+    meta:{votes:Number,favs:Numver},
+})
