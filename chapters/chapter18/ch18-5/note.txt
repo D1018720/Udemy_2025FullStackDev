@@ -14,3 +14,6 @@ const blogSchema = new Schema({
     date:{type:Date,defaultl:Date.now},
     meta:{votes:Number,favs:Numver},
 })
+
+Model.find(filter) - 找到所有符合filter條件的物件。參數一個物件，用來提供過濾尋找的條件。
+Model.findOne(filter) - 找到第一個符合filter條件的物件。參數一個物件，用來提供過濾尋找的條件。
