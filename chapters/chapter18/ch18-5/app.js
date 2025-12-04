@@ -62,6 +62,38 @@ app.get("/", async (req, res) => {
   }
 });
 
+// .updateOne() - 更新符合條件的第一筆資料
+// 這裡的msg不會回傳為資料庫的數據，而是更新操作的結果訊息
+// runValidators: true 代表在更新時也要執行Schema的驗證
+// Student.updateOne({ name: "Esther" }, { age: 28 }, {runValidators: true}).exec()
+//   .then(msg => {
+//     console.log(msg);
+//   })
+//   .catch(e => {
+//     console.error(e);
+//   }); 
+
+// .findOneAndUpdate() - 更新符合條件的第一筆資料，並回傳更新後的document，若有設定new為true。
+// 若沒有設定new屬性，或是new設定為false，則回傳更新前的document。
+// Student.findOneAndUpdate({ name: "Esther" },{ age: 29 },{ new: true, runValidators: true })
+//   .exec()
+//   .then(updatedDoc => {
+//     console.log(updatedDoc);
+//   })
+//   .catch(e => {
+//     console.error(e);
+//   }); 
+
+// .deleteOne() - 刪除符合條件的第一筆資料
+// Student.deleteOne({ name: "Esther" })
+//   .exec()
+//   .then(msg => {  
+//     console.log(msg);
+//   })
+//   .catch(e => {
+//     console.error(e);
+//   });
+
 app.listen(3000, () => {
   console.log("Server is running on http://localhost:3000");
 });
