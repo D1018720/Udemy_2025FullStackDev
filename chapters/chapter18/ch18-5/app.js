@@ -26,22 +26,40 @@ const studentSchema = new Schema({
 // mongoose.model()的第一個參數是String，且要為單數型的大寫英文字母開頭，
 // 像是要製作people的collection，就須使用'Person'(Mongoose會自動轉為複數形式)
 const Student = mongoose.model('Student', studentSchema);
-const newObject = new Student({
-  name: "Esther",
-  age: 27,
-  major: "Mathematics",
-  scholarship: {
-    merit: 6000,
-    other:7000,
-  },
-});
+// const newObject = new Student({
+//   name: "Esther",
+//   age: 27,
+//   major: "Mathematics",
+//   scholarship: {
+//     merit: 6000,
+//     other:7000,
+//   },
+// });
 
-// document.save() - 在MongoDB中儲存document。return a Promise。
-newObject.save().then(saveObject => {
-  console.log("資料已經儲存完畢，儲存的資料是:");
-  console.log(saveObject);
-}).catch(e => {
-  console.error(e);
+// // document.save() - 在MongoDB中儲存document。return a Promise。
+// newObject.save().then(saveObject => {
+//   console.log("資料已經儲存完畢，儲存的資料是:");
+//   console.log(saveObject);
+// }).catch(e => {
+//   console.error(e);
+// });
+
+// Student.find()給的是query，執行query需要使用.exec()，並且會回傳一個Promise
+// Student.find()
+//   .exec()
+//   .then(data => {
+//     console.log(data);
+//   }).catch(e => {
+//     console.error(e);
+//   });
+// 改用async寫
+app.get("/", async (req, res) => {
+  try {
+    const data = await Student.find().exec();
+    res.send(data);
+  } catch (e) {
+    console.error(e);
+  }
 });
 
 app.listen(3000, () => {
