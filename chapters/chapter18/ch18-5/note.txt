@@ -61,3 +61,37 @@ Schema Validators:
 5. maxlength(number)
 
 跟number有關的validators: min, max, enum
+
+* ch 18-11 Staic method, instance method:
+在Mongoose Model中的每筆資料都叫做document，document又叫做instance。
+若希望某個model中的所有documents都可以使用某個method，則可以將此method定義在Schema上。
+這種在Schema上的method稱為instance method。
+
+Instance Methods:
+1. 在Schema內設定methods屬性並給予一個物件，物件內有methods，
+2. 也可以直接設定Schema的methods屬性。
+
+Staic Methods:
+若想定義某個專屬於Schema使用的method，則可使用static method。
+Static method屬於Schema本身，不屬於Mongoose Model內部的documents。
+1.const animalSchema = new Schema(setting, {
+    statics: {
+        findByName(name) {
+            return this.find({name: new RegExp(name, 'i')});
+        }
+    }
+});
+
+2.animalSchema.statics.findByName = function(name) {
+    return this.find({name: new RegExp(name, 'i')});
+}
+
+3.animalSchema.static('findByBreed',function(breed){return this.find({breed});});
+注意這邊是static沒有加s
+
+* ch 18-12 Mongoose Middleware:
+也稱為pre,post hooks，是在異步函數執行期間傳遞控制權的函數。
+定義schema.pre('save', callback)這個middleware。當任何與此schema有關的物件要被儲存之前，
+此pre hook內的callback會先被執行。
+定義schema.post('save', callback)這個middleware。則任何與此schema有關的物件被成功儲存之後，
+此post hook內的callback就會被執行。

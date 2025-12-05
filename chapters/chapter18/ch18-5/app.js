@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+const fs = require('fs');
 
 app.set("view engine", "ejs");
 
@@ -21,6 +22,69 @@ const studentSchema = new Schema({
     merit: Number,
     other: Number,
   },
+});
+
+// 第一種新增instance methods方法
+// const studentSchema = new Schema({
+//   name: String,
+//   age: Number,
+//   major: String,
+//   scholarship: {
+//     merit: Number,
+//     other: Number,
+//   },
+// },{
+//   methods: {
+//     printTotalScholarship: function() {
+//       return this.scholarship.merit + this.scholarship.other;
+//     }
+//   }
+// });
+
+// 第二種新增instance methods方法
+// studentSchema.methods.printTotalScholarship = function() {
+//   return this.scholarship.merit + this.scholarship.other;
+// };
+
+// 第一種新增static methods方法
+// const studentSchema = new Schema({
+//   name: String,
+//   age: Number,
+//   major: String,
+//   scholarship: {
+//     merit: Number,
+//     other: Number,
+//   },
+// }, {
+//   statics: {
+//     findAllMajorStudents: function(major) {
+//       // return promise
+//       return this.find({ major: major }).exec();
+//     }
+//   }
+// });
+
+// 第二種新增static methods方法
+// studentSchema.statics.findAllMajorStudents = function(major) {
+//   // return promise
+//   return this.find({ major: major }).exec();
+// };
+
+// 第三種新增static methods方法
+// 注意這邊是static沒有加s
+studentSchema.static("findAllMajorStudents", function(major) {
+  // return promise
+  return this.find({ major: major }).exec();
+});
+
+// Moongoose Middleware - pre hook
+// 在資料被儲存到MongoDB之前，會先執行這個function
+studentSchema.pre("save", () => {
+  fs.writeFile("record.txt", "有一筆資料被儲存了", (e) => {
+    if (e) {
+      throw e;
+    }
+  });
 });
 
 // mongoose.model()的第一個參數是String，且要為單數型的大寫英文字母開頭，
@@ -93,6 +157,40 @@ app.get("/", async (req, res) => {
 //   .catch(e => {
 //     console.error(e);
 //   });
+
+// 使用自訂的methods
+// Student.find({}).exec()
+//   .then(arr => {
+//     arr.forEach(student => {
+//       console.log(student.name + "的總獎學金總額是: " + student.printTotalScholarship());
+//     });
+//   })
+//   .catch(e => {
+//     console.error(e);
+//   });
+
+// 使用static methods
+Student.findAllMajorStudents("Mathematics").then(data => {
+  console.log(data);
+}).catch(e => {
+  console.error(e);
+});
+
+let newStudent = new Student({
+  name: "Alice",
+  age: 22,
+  major: "Physics",
+  scholarship: {
+    merit: 5000,
+    other: 3000,
+  },
+});
+
+newStudent.save().then((data) => {
+  console.log("New student saved.");
+}).catch(e => {
+  console.error(e);
+});
 
 app.listen(3000, () => {
   console.log("Server is running on http://localhost:3000");
