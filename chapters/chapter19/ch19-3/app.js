@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const Student = require('./models/student');
 // 引入 cors middleware 解決資安跨域問題
-const cors = require('cors');
+// const cors = require('cors');
 
 mongoose.connect('mongodb://root:root@mongo:27017/app?authSource=admin')
   .then(() => {
@@ -17,13 +17,14 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // 引入 cors middleware 解決資安跨域問題
-app.use(cors());
+// app.use(cors());
 
 // 獲得所有學生的資料
 app.get('/students', async (req, res) => {
     try {
         let studentData = await Student.find().exec();
-        return res.send(studentData);
+        // return res.send(studentData);
+        return res.render('students', { studentData });
     } catch (e) {
         return res.status(500).send("尋找資料時發生錯誤");
     }
@@ -46,10 +47,17 @@ app.get('/students/:_id', async (req, res) => {
     try {
         // _id 名字一樣就可以直接寫成 {_id}
         let foundStudent = await Student.findOne({ _id }).exec()
-        return res.send(foundStudent);
+        // return res.send(foundStudent);
+        if (foundStudent != null) {
+            return res.render('student-page', { foundStudent });
+        } else {
+            // 正確的id格式，但資料庫找不到對應的學生
+            return res.status(400).render('student-not-found');
+        }
     } catch (e) {
         console.log(e);
-        return res.status(500).send("尋找資料時發生錯誤");
+        // 進到這裡通常是因為_id格式錯誤導致的
+        return res.status(400).render('student-not-found');
     }
 });
 
