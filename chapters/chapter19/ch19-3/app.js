@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const Student = require('./models/student');
+// 引入 cors middleware 解決資安跨域問題
+const cors = require('cors');
 
 mongoose.connect('mongodb://root:root@mongo:27017/app?authSource=admin')
   .then(() => {
@@ -14,6 +16,8 @@ mongoose.connect('mongodb://root:root@mongo:27017/app?authSource=admin')
 app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// 引入 cors middleware 解決資安跨域問題
+app.use(cors());
 
 // 獲得所有學生的資料
 app.get('/students', async (req, res) => {
