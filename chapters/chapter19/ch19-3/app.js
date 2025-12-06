@@ -30,6 +30,10 @@ app.get('/students', async (req, res) => {
     }
 });
 
+app.get("/students/new", (req, res) => {
+    res.render("new-student-form");
+});
+
 // 用 route parameter 獲得單一學生的資料
 // app.get('/students/:id', async (req, res) => {
 //     let {id} = req.params;
@@ -74,15 +78,12 @@ app.post('/students', async (req, res) => {
             },
         });
         let saveStudent = await newStudent.save();
-        return res.send({
-            msg: "學生資料新增成功",
-            saveObject: saveStudent,
-        });
+        return res.render("student-save-success", { saveStudent });
     } catch (e) {
         console.log(e);
         // status 400 可能是使用者輸入錯誤導致無法新增
         // e.message 是在POSTMAN看到 mongoose validation 錯誤訊息的關鍵
-        return res.status(400).send(e.message);
+        return res.status(400).render("student-save-fail");
     }
 });
 
