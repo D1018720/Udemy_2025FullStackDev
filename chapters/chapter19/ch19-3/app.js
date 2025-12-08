@@ -21,16 +21,41 @@ app.use(express.urlencoded({ extended: true }));
 // app.use(cors());
 app.use(methodOverride('_method'));
 
+// Express中的Ｍiddleware可以放在route內部的path以及callback之間:app.method(path,middlewareFn,callbackFn);
+// function myMiddleware(req, res, next) { 
+//     console.log("正在執行middleware。。。");
+//     next();
+// }
+
+// myMiddleware只會在這個route被執行
+// 也可在這裡直接寫成arrow function expression (req,res,next) => {...}取代myMiddleware
+// 也可以用array的形式放多個middleware
+// 在Middleware會放入req,res,next三個參數，但如果要處理錯誤，
+// 可以放四個參數，第四個參數是error物件: (err,req,res,next) => {...}
+// 在try...catch的catch區塊中呼叫next(err)就會進到有四個參數的middleware中
 // 獲得所有學生的資料
-app.get('/students', async (req, res) => {
-    try {
-        let studentData = await Student.find().exec();
-        // return res.send(studentData);
-        return res.render('students', { studentData });
-    } catch (e) {
-        return res.status(500).send("尋找資料時發生錯誤");
-    }
-});
+app.get('/students', 
+    // [
+    //     (req, res, next) => { 
+    //         console.log("正在執行middleware。。。"); 
+    //         next(); 
+    //     },
+    //     (req, res, next) => { 
+    //         console.log("正在執行middleware2。。。"); 
+    //         next(); 
+    //     },
+
+    // ], 
+    async (req, res, next) => {
+        try {
+            let studentData = await Student.find().exec();
+            // return res.send(studentData);
+            return res.render('students', { studentData });
+        } catch (e) {
+            // return res.status(500).send("尋找資料時發生錯誤");
+            next(e);
+        }
+    });
 
 app.get("/students/new", (req, res) => {
     res.render("new-student-form");
@@ -164,6 +189,11 @@ app.delete('/students/:_id', async (req, res) => {
     } catch (e) {
         return res.status(500).send("刪除資料時發生錯誤");
     }
+});
+
+// 錯誤處理的middleware，放在所有route的後面
+app.use((err, req, res, next) => {
+    return res.status(400).render('error');
 });
 
 app.listen(3000, () => {
