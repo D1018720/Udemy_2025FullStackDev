@@ -1,0 +1,12 @@
+隨著伺服器擴大，routes數量可能變超大，將routes根據功能分類變得重要。
+Express.js提供express.Router的功能，讓我們可以將routes分門別類。
+語法:
+const express = require('express);
+const router = express.Router();
+router.use();
+router.get();
+module.exports = router;
+
+在主要的controller內，可寫:
+const birds = require('./birds');
+app.use('/birds',birds);
