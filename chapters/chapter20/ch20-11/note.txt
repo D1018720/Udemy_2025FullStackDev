@@ -1,0 +1,2 @@
+Flash是在session當中一個特別的儲存空間，可用來儲存一些簡短訊息。
+例如，登入成功或失敗的資訊。若要使用flash，可使用connect-flash套件。
