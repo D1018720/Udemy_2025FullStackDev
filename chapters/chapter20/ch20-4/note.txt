@@ -1,0 +1,8 @@
+由於cookies可在客戶端的瀏覽器內被自由修改，我們可以在傳送cookie，幫cookie做簽名(sign)。
+簽名後的cookie被稱為signed Cookies會被放在客戶端瀏覽器內部。
+若客戶端對signed cookie做修改，我們的Express伺服器可以抓到這個錯誤，並且確認修改過的cookie為無效cookie。
+
+在Express中，要對cookie做簽名要先下載cookie parser，並在cookieParser()這個function內提供一個參數。
+此參數為某個秘密String。
+res.cookie(key, value, {signed: true});
+
