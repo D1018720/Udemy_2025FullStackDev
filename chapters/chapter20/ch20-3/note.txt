@@ -1,0 +1,10 @@
+Cookies是伺服器傳送給瀏覽器，並在客戶端下次訪問同一網站時一同發回的一小段文字。
+幫助該網站保留使用者的偏好設置，以便使用者再次訪問該網站時無須重新填寫資料。
+Cookies會被放在客戶端瀏覽器內部。
+
+Cookie是以key-value pair形式儲存於瀏覽器內。
+在Express伺服器程式碼中，設定語法是:
+res.cookie(key, value);
+
+下次同個瀏覽器傳送HTTP request到我們的伺服器時，可以用cookieParser()這個middleware，
+之後就可以透過req.cookies這個屬性來獲取我們的伺服器曾經存在客戶端的資料。
