@@ -1,0 +1,32 @@
+使用Cookies可能有兩個問題:
+1. 能夠儲存的資料有限，最多不超過4095 Bytes。
+2. Cookies可被輕易修改，會引發安全性問題。若我們將MongoDB的id當作cookie放到使用者的瀏覽器內，
+   用戶可編輯他瀏覽器上的cookie並成為其他用戶，甚至可以變成網站管理員。
+
+Sessions是在網頁伺服器上的儲存空間。當使用者登入網頁時，伺服器會製作一個session id，以及此id對應的資料。
+session id會被當作cookie送到用戶端。下次造訪同一個網站時，session id會被以cookie的形式送到伺服器，
+伺服器使用session id找到相對應的資料來確認使用者身分。
+
+session id通常是非常長的String，可能性很多，比密碼更難猜。
+在發出session id之前，可以對其簽名。若有人竄改cookie內的session id，我們可快速識別出來。
+
+在Express伺服器內，要使用sessions，可用套件express-sessions。
+語法:
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: true } 
+}))
+
+secret - 幫session id做成的cookie簽名。
+resave - 強制將此session重新保存回伺服器上的session存儲區，即使在上次到本次的HTTP request期間，
+         從未修改過此session。預設值為true，建議設為false。使用true可能導致race condition。
+         例如，客戶端向伺服器發出兩個並行的request，則某個request對session所做的改變會在另一個
+         request結束時被覆蓋。
+saveUninitialized - 當request送到伺服器時，若request的header內沒有包含session id的cookie，伺服器會
+                    1. 生成獨特的session id、2.將session id存到cookie內，寄給用戶端、3.創建一個empty session object、
+                    4. 根據saveUninitialized的值，在request結束時，session object可能會被儲存在伺服器內。
+                    預設值為true，建議設為false。使用false伺服器可以防止在系統中存儲大量empty session object。
+                    由於沒有任何有用的資訊需要session來儲存，session object在request結束時會被刪除。
+cookie: { secure: true } - 設定secure為true，則cookies只有在HTTPs的協議下才會傳輸。
