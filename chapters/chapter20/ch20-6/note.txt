@@ -1,0 +1,19 @@
+電腦科學中，雜湊函數的功能是，把訊息或資料壓縮成摘要，或使得資料量變小或變大，將資料的個是轉換，
+重新建立一個叫做雜湊值hash values。
+
+一致性: 每次給我們hash()函數提供相同的輸入時，我們需要得到相同的輸出。不同輸入也應有相同輸出。
+均勻分布: 可以減少hash collision發生(指兩個不同的input卻算出相同的hash value)。
+不可逆性: 雜湊函數不應該可逆，不然容易被破解。
+雪崩效應: 輸入微小變化會導致輸出巨大差異。
+
+ch20-8 Cookie and Storage(local storage、session storage的統稱) 差別
+cookeis:
+    Purpose - 伺服器端讀取資料、保留使用者偏好設置。
+    HTTP - 會隨著HTTP請求寄送到伺服器端。
+    Data Size - 對每個網站來說，最大4095 Bytes。
+    Expiration - 有可能會過期。
+Storage:
+    Purpose - 運行在用戶端的儲存空間。
+    HTTP - 不會隨著HTTP請求寄送到伺服器端。
+    Data Size - 最大5MB。
+    Expiration - 不會過期。
