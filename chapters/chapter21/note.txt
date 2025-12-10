@@ -1,0 +1,8 @@
+Bcrypt: 根據Blowfish加密演算法所設計，可客製化salt round。
+        salt round數字越大，做雜湊運算所需要完成的時間越久，是2^salt round倍成長。
+
+使用Bcrypt時，輸入是密碼、salt round、一個鹽巴、而輸出是雜湊值。
+$2<a/b/x/y>$[cost]$[22 character salt][31 character hash]
+
+資料庫當中也會儲存鹽巴以及salt round。所以下次有人登入時，把他得密碼拿去跟資料庫內的鹽巴進行bcypt加密，
+salt round以及演算法版本，全部一起使用，即可確認密碼正確性。
