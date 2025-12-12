@@ -1,3 +1,5 @@
+每次要練習這個單元時要先去桌面的OAuth練習.txt找.env內的內容再建立一個.env在這裡。
+
 因為Google OAuth不授權codespace產生的網址，所以要用ngrok，
 每次練習時請先用nodemon app.js後再開一個終端機輸入ngrok http 8080，
 然後在ngork那邊得到的網址每次都要複製到google OAuth那邊，因為ngrok每次產生的網址都會變。
