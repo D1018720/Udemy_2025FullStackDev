@@ -1,0 +1,5 @@
+因為Google OAuth不授權codespace產生的網址，所以要用ngrok，
+每次練習時請先用nodemon app.js後再開一個終端機輸入ngrok http 8080，
+然後在ngork那邊得到的網址每次都要複製到google OAuth那邊，因為ngrok每次產生的網址都會變。
+要先去google OAuth那的API品牌那改應用程式首頁跟授權網域(這個不用打https://)，
+再去用戶端改已授權的重新導向 URI
