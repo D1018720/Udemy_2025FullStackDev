@@ -1,0 +1,24 @@
+Ch 22-1 OAuth:
+依靠另一方來驗證某人的真實性，而不使用密碼。大多數網站讓用戶在本地身分驗證或
+使用其他服務之間進行選擇。
+
+使用OAuth幫助新舊用戶簡化註冊/登錄過程。假設用戶已經在瀏覽器中登入fb，
+則用戶只要點擊一個按鈕即可登入網站，而不需要填寫個人資料表格或註冊新密碼。
+
+OAuth 2.0 是一種安全協議，規範讓第三方應用程式以有限的權限，透過建構資源擁有者
+與網路伺服器間的許可交互機制，讓第三方應用程式代表資源擁有者訪問伺服器。
+
+Resource Owner - 資源擁有者，網頁的使用者。資源是網頁使用者的個人資料與授權。
+Client - 客戶端，第三方應用程式的網站本身。
+Authorization Server - 授權伺服器，像Google、FB等大型系統，也就是給予授權的伺服器。
+Resource Server - 資源伺服器，Google、FB等大型系統中，存放資料擁有者得被保護資訊的位置。
+
+OAuth 2.0 詳細流程:
+1. Site A到Site B註冊自己，並從Site B拿到Secret以及一個ID。
+2. 當使用者X告訴Site A去存取X在SiteB上的資料，使用者X會被透過Site A的ID送到
+   送到Site B，並告訴Site B說自己同意Site A來獲取自己存在這的資訊。
+3. Site B接下來會把使用者X導回到Site ，並附加上一個Authorization Code。
+4. Site A接下來把Authorization Code以及在Site B註冊時得到的secret送到Site B。
+5. Site B確認了Site A給的secret，確認沒有其他網站冒充Site A，透過Authorization Code
+   確認使用者X確實給Site A授權來存取使用者X的資料，Site B將security toke寄給Site A。
+6. Site A拿著security token到Site B去取得所需資料。
