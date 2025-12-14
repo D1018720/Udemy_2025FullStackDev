@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth-routes');
+const profileRoutes = require('./routes/profile-routes');
 require('./config/passport');
 const session = require('express-session');
 const passport = require('passport');
@@ -39,9 +40,12 @@ app.use(passport.session());
 
 // 設定routes
 app.use("/auth", authRoutes);
+app.use("/profile", profileRoutes);
 
+// 如果沒有req.user，表示使用者尚未登入
+// user參數會傳給EJS樣板引擎nav.ejs使用
 app.get("/", (req, res) => {
-    return res.render("index");
+    return res.render("index", { user: req.user });
 });
 
 app.listen(8080, () => {

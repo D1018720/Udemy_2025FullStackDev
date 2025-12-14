@@ -24,28 +24,39 @@ const User = require("../models/user-model");
 // passport.serializeUser()會自動帶入以下兩個功能:
 // 1. 內部的done()執行時，將參數的值放入session內，並在用戶端設置cookie。
 // 2. 設定req.isAuthenticated()這個function，並回傳true。
-
 passport.serializeUser((user, done) => {
    console.log("SerializeUser使用者。。。");
   //  console.log(user);
    done(null, user._id); // 將mongoDB的id存入session
   //  並且將id簽名後，以cookie的形式給使用者。。。
+  //  之後會進入redirect區域
+});
+// Passport在deserializeUser()額外附加的一個功能，就是當deserializeUser()內部的done()被執行時，
+// Passport會自動將done()第二個參數的值放入req.user內，方便後續使用。
+// 例如在後續的路由中，可以透過req.user取得當前登入使用者的資料。
+// 這樣的設計讓開發者可以輕鬆地在應用程式中存取當前使用者的資訊，而不需要每次都從資料庫重新查詢。
+passport.deserializeUser(async (_id, done) => {
+   console.log("DeserializeUser使用者。。。使用SerializeUser儲存的id，去找到資料庫內的資料");
+  //  console.log(id);
+   let foundUser = await User.findOne({ _id }).exec();
+   done(null, foundUser); // req.user 這個屬性設定為 foundUser
+  // 之後會進去/profile路由
 });
 
 passport.use(
     new GoogleStrategy({
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: "https://8fb2d2aea3d1.ngrok-free.app/auth/google/redirect"
+        callbackURL: "https://7eda1e76dc9f.ngrok-free.app/auth/google/redirect"
     }, 
     async (accessToken, refreshToken, profile, done) => {
         console.log("進入Google Strategy的區域");
-        console.log(profile);
+        // console.log(profile);
         //console.log("==============================");
         let foundUser = await User.findOne({ googleID: profile.id }).exec();
         if (foundUser) {
             console.log("使用者已註冊過，無須存入資料庫內");
-            done(null, foundUser);
+            done(null, foundUser); // 傳foundUser到serializeUser的user參數內
         } else {
             console.log("偵測到新用戶，須存入資料庫內");
             let newUser = new User({
@@ -56,7 +67,7 @@ passport.use(
             });
             let saveUser = await newUser.save();
             console.log("成功創建新用戶");
-            done(null, saveUser);
+            done(null, saveUser); // 傳saveUser到serializeUser的user參數內
         }
     })
 );
