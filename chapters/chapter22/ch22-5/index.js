@@ -8,6 +8,7 @@ const profileRoutes = require('./routes/profile-routes');
 require('./config/passport');
 const session = require('express-session');
 const passport = require('passport');
+const flash = require('connect-flash');
 
 mongoose
     .connect('mongodb://root:root@mongo:27017/app?authSource=admin')
@@ -37,6 +38,15 @@ app.use(session({
 // 初始化Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
+// 設定全域變數，讓message.ejs樣板可以使用
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash("success_msg");
+    res.locals.error_msg = req.flash("error_msg");
+    res.locals.error = req.flash("error");
+    // 讓控制權交給下一個middleware
+    next();
+});
 
 // 設定routes
 app.use("/auth", authRoutes);

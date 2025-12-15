@@ -47,7 +47,7 @@ passport.use(
     new GoogleStrategy({
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: "https://7eda1e76dc9f.ngrok-free.app/auth/google/redirect"
+        callbackURL: "https://d2e31920d4ab.ngrok-free.app/auth/google/redirect"
     }, 
     async (accessToken, refreshToken, profile, done) => {
         console.log("進入Google Strategy的區域");
