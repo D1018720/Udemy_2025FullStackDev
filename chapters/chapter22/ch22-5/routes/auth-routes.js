@@ -36,7 +36,6 @@ router.get('/google',
 
 // 如果不是用網頁post出password，而是用postman，這樣在原本設定在signup.ejs的前端驗證就會失效
 // 因為Node.js 自 v4.0.0 之後就將 util.isArray() 標記為 deprecated，建議改用標準的 Array.isArray()
-// 所以目前password.length < 8的警告訊息跟註冊信箱成功訊息等message都無法顯示，但功能正常。
 router.post('/signup', async (req, res) => {
     let {name, email, password} = req.body;
     if (password.length < 8) {
@@ -62,6 +61,18 @@ router.post('/signup', async (req, res) => {
     req.flash("success_msg", "註冊成功！請使用剛剛註冊的帳號密碼登入系統。");
     return res.redirect('/auth/login');
 });
+
+// failureFlash的值會套在req.flash("error")內
+router.post('/login', 
+    passport.authenticate('local', {
+        failureRedirect: '/auth/login',
+        failureFlash: "登入失敗，帳號或密碼不正確。",
+    }),
+    (req, res) => {
+        // 登入成功後會執行此function
+        return res.redirect('/profile');
+    }
+);
 
 // 設定Google登入成功後的redirect路由
 router.get('/google/redirect', 

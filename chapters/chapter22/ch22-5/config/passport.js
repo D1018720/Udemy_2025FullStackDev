@@ -1,6 +1,8 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require("../models/user-model");
+const LocalStrategy = require("passport-local").Strategy;
+const bcrypt = require("bcrypt");
 
 // 設定Google Strategy登入方式需要兩個參數，第一個是物件，內含有client id, client secret以及一個callback URL。
 // 第二個是function。
@@ -47,7 +49,7 @@ passport.use(
     new GoogleStrategy({
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: "https://d2e31920d4ab.ngrok-free.app/auth/google/redirect"
+        callbackURL: "https://eac29174a8e8.ngrok-free.app/auth/google/redirect"
     }, 
     async (accessToken, refreshToken, profile, done) => {
         console.log("進入Google Strategy的區域");
@@ -71,3 +73,21 @@ passport.use(
         }
     })
 );
+
+// 在passport.js post到/login時，在login.ejs內的name要設為username與password
+// 這樣才會自動套在這邊的LocalStrategy內
+passport.use(new LocalStrategy(async (username, password, done) => {
+    let foundUser = await User.findOne({ email: username }).exec();
+    if (foundUser) {
+        let result = await bcrypt.compare(password, foundUser.password);
+        // done(null, user)`：表示操作成功，並將 `user` 資料傳遞到下一步。
+        // done(error)`：表示操作失敗，並將 `error` 傳遞到下一步。
+        if (result) {
+            return done(null, foundUser);
+        } else {
+            return done(null, false);
+        }
+    } else {
+        return done(null, false);
+    }   
+}));
